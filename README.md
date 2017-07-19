@@ -24,3 +24,28 @@ react-native开发遇到的一些问题
     2.进入.gradle/wrapper/dists/gradle-3.3-all/55gk2rcmfc6p2dg9u9ohc3hw9文件夹下，删除.part文件
     3.去gradle网站下载对应的cradle-3.3-all.zi文件，下载完成后不解压放入55gk2rcmfc6p2dg9u9ohc3hw9文件夹下
     4.重新打开android studio问题已经解决Mac安装android studio后卡在building gradle project info的解决方法
+
+3.ios fetch API报错，Type Error: Network request failed
+  在 info.plist file 加入
+    '<key>NSAllowsArbitraryLoads</key>
+    <true/>'
+    像这样
+
+    '<key>NSAppTransportSecurity</key>
+    <!--See http://ste.vn/2015/06/10/configuring-app-transport-security-ios-9-osx-10-11/ -->
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+        <key>NSExceptionDomains</key>
+        <dict>
+            <key>localhost</key>
+            <dict>
+                <key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+                <true/>
+            </dict>
+        </dict>
+    </dict>'
+
+    
+    http://bbs.reactnative.cn/uploads/files/1473409969387-bd986712-10a5-4a38-9deb-f5b45d7fd16d.png
+    添加这一栏,默认是NO, 改成YES即可
